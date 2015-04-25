@@ -34,9 +34,9 @@ public class Racket {
 
     public void pressed(int keyCode) {
         if (keyCode == up)
-            ya = -1;
+            ya = -2;
         else if (keyCode == down)
-            ya = 1;
+            ya = 2;
     }
 
     public void released(int keyCode) {

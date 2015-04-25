@@ -9,11 +9,12 @@ import java.awt.Color;
 import javax.swing.JFrame;
 
 public class Pong extends JFrame {
-    private final static int WIDTH = 700, HEIGHT = 450;
+	private static final long serialVersionUID = 3504739896597314995L;
+	private final static int GAME_WIDTH = 800, GAME_HEIGHT = 600;
     private PongPanel panel;
 
     public Pong() {
-        setSize(WIDTH, HEIGHT);
+        setSize(GAME_WIDTH, GAME_HEIGHT);
         setTitle("Pong");
         setBackground(Color.WHITE);
         setResizable(false);

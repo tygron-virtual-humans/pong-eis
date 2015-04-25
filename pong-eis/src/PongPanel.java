@@ -15,7 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 public class PongPanel extends JPanel implements ActionListener, KeyListener {
-    private Pong game;
+	private static final long serialVersionUID = 6647966072683911536L;
+	private Pong game;
     private Ball ball;
     private Racket player1, player2;
     private int score1, score2;
