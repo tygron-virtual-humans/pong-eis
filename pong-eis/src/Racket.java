@@ -26,9 +26,9 @@ public class Racket {
     public void update() {
         if (y > 0 && y < game.getHeight() - HEIGHT - 29)
             y += ya;
-        else if (y == 0)
+        else if (y <= 0)
             y++;
-        else if (y == game.getHeight() - HEIGHT - 29)
+        else if (y >= game.getHeight() - HEIGHT - 29)
             y--;
     }
 
