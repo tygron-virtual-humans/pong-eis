@@ -16,7 +16,7 @@ import javax.swing.Timer;
 public class Pong extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 3504739896597314995L;
 	private final static int GAME_WIDTH = 800, GAME_HEIGHT = 600;
-	public final static int BORDER_CORRECTION = 31;
+	public final static int BORDER_CORRECTION = 16;
 	private boolean playingState = false;
     private PongPanel panel;
     private Timer timer;
@@ -47,8 +47,8 @@ public class Pong extends JFrame implements ActionListener {
     	
     	// Create game elements
         ball = new Ball(this);
-        player1 = new Racket(this, this.getWidth() - BORDER_CORRECTION);
-        player2 = new Racket(this, 20);
+        player1 = new Racket(this, this.getWidth() - BORDER_CORRECTION - 5);
+        player2 = new Racket(this, 5);
     	
         // Set playing state + start timer/game
         if(timer != null){

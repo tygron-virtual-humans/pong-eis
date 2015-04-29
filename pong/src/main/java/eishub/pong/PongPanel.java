@@ -167,9 +167,9 @@ public class PongPanel extends JPanel{
     public void paintUI(Graphics g) {
         // Draw scorebox
         g.setColor(new Color(236,236,236));
-        g.fillRect(game.getWidth()/2 - Pong.BORDER_CORRECTION - 23, 3, 100, 47);
+        g.fillRect(game.getWidth()/2 - Pong.BORDER_CORRECTION - 38, 3, 100, 47);
         g.setColor(Color.BLACK);
-        g.drawRect(game.getWidth()/2 - Pong.BORDER_CORRECTION - 23, 2, 100, 48);
+        g.drawRect(game.getWidth()/2 - Pong.BORDER_CORRECTION - 38, 2, 100, 48);
         
         // Enable anti aliasing
         ((Graphics2D) g).setRenderingHint(
@@ -179,13 +179,13 @@ public class PongPanel extends JPanel{
         // Draw score
         g.setFont(scoreFont);
         g.setColor(new Color(0,145,206));
-        g.drawString(game.getScore(1)+ "", game.getWidth()/2 - Pong.BORDER_CORRECTION - 13, 39);
-        g.drawString(game.getScore(2)+ "", game.getWidth()/2 - Pong.BORDER_CORRECTION + 48, 39);
+        g.drawString(game.getScore(1)+ "", game.getWidth()/2 - Pong.BORDER_CORRECTION - 28, 39);
+        g.drawString(game.getScore(2)+ "", game.getWidth()/2 - Pong.BORDER_CORRECTION + 33, 39);
         
         // Draw VS   
         g.setFont(vsFont);
         g.setColor(new Color(206,24,0));
-        g.drawString("vs", game.getWidth()/2 - Pong.BORDER_CORRECTION + 18, 39);  	
+        g.drawString("vs", game.getWidth()/2 - Pong.BORDER_CORRECTION + 3, 39);  	
     }  
     
     /**
@@ -207,9 +207,9 @@ public class PongPanel extends JPanel{
         	}else{
         		won = 2;
         	}
-        	g.drawString("Player "+won+" WON!",game.getWidth()/2 - Pong.BORDER_CORRECTION - 80, game.getHeight()/2);
+        	g.drawString("Player "+won+" WON!",game.getWidth()/2 - Pong.BORDER_CORRECTION - 95, game.getHeight()/2);
         	g.setFont(vsFont);
-        	g.drawString("press 'r' to reset", game.getWidth()/2 - Pong.BORDER_CORRECTION - 36 , game.getHeight()/2 + 25);
+        	g.drawString("press 'r' to reset", game.getWidth()/2 - Pong.BORDER_CORRECTION - 51 , game.getHeight()/2 + 25);
         }else{
             // Draw ball
             g.setColor(Color.BLACK);
