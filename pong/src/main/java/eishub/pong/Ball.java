@@ -27,26 +27,26 @@ public class Ball {
         x += xa;
         y += ya;
         if (x < 0) {
-            game.getPanel().increaseScore(1);
+            game.increaseScore(1);
             x = game.getWidth() / 2;
             xa = -xa;
         }
         else if (x > game.getWidth() - WIDTH - 7) {
-            game.getPanel().increaseScore(2);
+            game.increaseScore(2);
             x = game.getWidth() / 2;
             xa = -xa;
         }
         else if (y < 0 || y > game.getHeight() - HEIGHT - 29)
             ya = -ya;
-        if (game.getPanel().getScore(1) == 10)
+        if (game.getScore(1) == 10)
             JOptionPane.showMessageDialog(null, "Player 1 wins", "Pong", JOptionPane.PLAIN_MESSAGE);
-        else if (game.getPanel().getScore(2) == 10)
+        else if (game.getScore(2) == 10)
             JOptionPane.showMessageDialog(null, "Player 2 wins", "Pong", JOptionPane.PLAIN_MESSAGE);
         checkCollision();
     }
 
     public void checkCollision() {
-        if (game.getPanel().getPlayer(1).getBounds().intersects(getBounds()) || game.getPanel().getPlayer(2).getBounds().intersects(getBounds()))
+        if (game.getPlayer(1).getBounds().intersects(getBounds()) || game.getPlayer(2).getBounds().intersects(getBounds()))
             xa = -xa;
     }
 
