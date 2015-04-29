@@ -43,6 +43,18 @@ public class PongPanel extends JPanel{
 		InputMap inpMap = this.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
 		
 		/**
+		 * General Functionality
+		 */
+	    Action reset = new AbstractAction() {
+	        private static final long serialVersionUID = 6535;
+	        public void actionPerformed(ActionEvent e) {
+	        	game.resetGame();
+	        }
+	    };
+	    inpMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_R,0,false), "Reset");
+	    this.getActionMap().put("Reset", reset);
+	    
+		/**
 		 * PLAYER 1
 		 */
 	    Action up = new AbstractAction() {
@@ -146,6 +158,8 @@ public class PongPanel extends JPanel{
         		won = 2;
         	}
         	g.drawString("Player "+won+" WON!",game.getWidth()/2 - Pong.BORDER_CORRECTION - 80, game.getHeight()/2);
+        	g.setFont(vsFont);
+        	g.drawString("press 'r' to reset", game.getWidth()/2 - Pong.BORDER_CORRECTION - 36 , game.getHeight()/2 + 25);
         }else{
             // Draw ball
             g.setColor(Color.BLACK);

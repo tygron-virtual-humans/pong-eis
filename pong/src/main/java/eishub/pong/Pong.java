@@ -34,18 +34,32 @@ public class Pong extends JFrame implements ActionListener {
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
-        ball = new Ball(this);
-        player1 = new Racket(this, this.getWidth() - BORDER_CORRECTION);
-        player2 = new Racket(this, 20);
         panel = new PongPanel(this);
         add(panel);
         
+        resetGame();
+    }
+
+    /**
+     * Reset the game completely
+     */
+    public void resetGame(){
+    	
+    	// Create game elements
+        ball = new Ball(this);
+        player1 = new Racket(this, this.getWidth() - BORDER_CORRECTION);
+        player2 = new Racket(this, 20);
+    	
         // Set playing state + start timer/game
+        if(timer != null){
+        	timer.stop();
+        }
+        score1 = 0;
+        score2 = 0;
         playingState = true;
         timer = new Timer(5, this);
         timer.start();
     }
-
     
     public Racket getPlayer(int playerNo) {
         if (playerNo == 1){
