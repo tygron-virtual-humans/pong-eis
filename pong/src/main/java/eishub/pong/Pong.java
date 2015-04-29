@@ -9,7 +9,6 @@ package eishub.pong;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 import javax.swing.Timer;
@@ -33,9 +32,8 @@ public class Pong extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         ball = new Ball(this);
-        player1 = new Racket(this, KeyEvent.VK_UP, KeyEvent.VK_DOWN, this.getWidth() - 36);
-        player2 = new Racket(this, KeyEvent.VK_W, KeyEvent.VK_S, 20);
-         
+        player1 = new Racket(this, this.getWidth() - 36);
+        player2 = new Racket(this, 20);
         panel = new PongPanel(this);
         add(panel);
         
@@ -45,10 +43,11 @@ public class Pong extends JFrame implements ActionListener {
 
     
     public Racket getPlayer(int playerNo) {
-        if (playerNo == 1)
+        if (playerNo == 1){
             return player1;
-        else
+        }else{
             return player2;
+        }
     }
     
     public Ball getBall(){
@@ -56,17 +55,19 @@ public class Pong extends JFrame implements ActionListener {
     }
 
     public void increaseScore(int playerNo) {
-        if (playerNo == 1)
+        if (playerNo == 1){
             score1++;
-        else
+        }else{
             score2++;
+        }
     }
 
     public int getScore(int playerNo) {
-        if (playerNo == 1)
+        if (playerNo == 1){
             return score1;
-        else
+        }else{
             return score2;
+        }
     }
     
     public PongPanel getPanel() {

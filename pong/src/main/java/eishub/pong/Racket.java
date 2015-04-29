@@ -12,18 +12,18 @@ import java.awt.Rectangle;
 public class Racket {
     private static final int WIDTH = 10, HEIGHT = 60;
     private Pong game;
-    private int up, down;
     private int x;
     private int y, ya;
 
-    public Racket(Pong game, int up, int down, int x) {
+    public Racket(Pong game, int x) {
         this.game = game;
         this.x = x;
         y = game.getHeight() / 2;
-        this.up = up;
-        this.down = down;
     }
 
+    /**
+     * Update Tickc
+     */
     public void update() {
         if (y > 0 && y < game.getHeight() - HEIGHT - 29)
             y += ya;
@@ -31,13 +31,6 @@ public class Racket {
             y++;
         else if (y >= game.getHeight() - HEIGHT - 29)
             y--;
-    }
-
-    public void pressed(int keyCode) {
-        if (keyCode == up)
-            moveUp();
-        else if (keyCode == down)
-            moveDown();
     }
     
     /**
@@ -56,11 +49,13 @@ public class Racket {
     	ya = 2;
     }
     
-
-    public void released(int keyCode) {
-        if (keyCode == up || keyCode == down)
-            ya = 0;
-    }
+    /**
+     * Stop player movement
+     * @param keyCode
+     */
+    public void moveStop(){
+    	ya = 0;
+    }    
 
     public Rectangle getBounds() {
         return new Rectangle(x, y, WIDTH, HEIGHT);
