@@ -23,14 +23,14 @@ public class PongPaddle {
 		return result;
 	}
 	
-	/*@AsPercept(name = "paddle")
+	@AsPercept(name = "paddle")
 	public int paddle() {
 		return controller.getPlayer(1).getPosition();
-	}*/
+	}
 	
 	@AsAction(name = "move")
 	public void movePaddle(int direction){
 		if(direction < 0) controller.getPlayer(1).moveDown();
-		if(direction > 0) controller.getPlayer(1).moveDown();
+		if(direction > 0) controller.getPlayer(1).moveUp();
 	}
 }
