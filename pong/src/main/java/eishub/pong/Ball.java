@@ -57,4 +57,20 @@ public class Ball {
     public void paint(Graphics g) {
         g.fillRect(x, y, WIDTH, HEIGHT);
     }
+    
+    /**
+     * Return the horizontal position
+     * @return
+     */
+    public int getPositionX(){
+    	return x;
+    }
+    
+    /**
+     * Return the vertical position
+     * @return
+     */
+    public int getPositionY(){
+    	return y;
+    }
 }

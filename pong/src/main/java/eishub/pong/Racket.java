@@ -52,4 +52,12 @@ public class Racket {
     public void paint(Graphics g) {
         g.fillRect(x, y, WIDTH, HEIGHT);
     }
+    
+    /**
+     * This returns the vertical position of the player
+     * @return
+     */
+    public int getPosition(){
+    	return y;
+    }
 }
