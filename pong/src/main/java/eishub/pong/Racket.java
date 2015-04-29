@@ -35,10 +35,27 @@ public class Racket {
 
     public void pressed(int keyCode) {
         if (keyCode == up)
-            ya = -2;
+            moveUp();
         else if (keyCode == down)
-            ya = 2;
+            moveDown();
     }
+    
+    /**
+     * Move player 1 unit up.
+     * @param keyCode
+     */
+    public void moveUp(){
+    	ya = -2;
+    }
+    
+    /**
+     * Move player 1 unit down.
+     * @param keyCode
+     */
+    public void moveDown(){
+    	ya = 2;
+    }
+    
 
     public void released(int keyCode) {
         if (keyCode == up || keyCode == down)
