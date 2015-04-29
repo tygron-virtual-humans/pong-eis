@@ -16,7 +16,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class PongPanel extends JPanel implements ActionListener, KeyListener {
+public class PongPanel extends JPanel implements KeyListener {
 	private static final long serialVersionUID = 6647966072683911536L;
        
 	private Pong game;
@@ -24,21 +24,9 @@ public class PongPanel extends JPanel implements ActionListener, KeyListener {
     public PongPanel(Pong game) {
         setBackground(Color.WHITE);
         this.game = game;            
-        Timer timer = new Timer(5, this);
-        timer.start();
+
         addKeyListener(this);
         setFocusable(true);
-    }
-
-    private void update() {
-        game.getBall().update();
-        game.getPlayer(1).update();
-        game.getPlayer(2).update();
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        update();
-        repaint();
     }
 
     public void keyPressed(KeyEvent e) {

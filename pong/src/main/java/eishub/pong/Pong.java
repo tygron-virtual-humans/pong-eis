@@ -7,11 +7,14 @@ package eishub.pong;
  */
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
-public class Pong extends JFrame {
+public class Pong extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 3504739896597314995L;
 	private final static int GAME_WIDTH = 800, GAME_HEIGHT = 600;
     private PongPanel panel;
@@ -35,6 +38,9 @@ public class Pong extends JFrame {
          
         panel = new PongPanel(this);
         add(panel);
+        
+        Timer timer = new Timer(5, this);
+        timer.start();
     }
 
     
@@ -70,4 +76,15 @@ public class Pong extends JFrame {
     public static void main(String[] args) {
         new Pong();
     }
+
+    private void update() {
+        getBall().update();
+        getPlayer(1).update();
+        getPlayer(2).update();
+    }
+
+	public void actionPerformed(ActionEvent arg0) {
+		update();
+		panel.repaint();
+	}
 }
