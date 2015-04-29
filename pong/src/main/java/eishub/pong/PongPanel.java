@@ -130,13 +130,26 @@ public class PongPanel extends JPanel{
         g.setFont(vsFont);
         g.setColor(new Color(206,24,0));
         g.drawString("vs", game.getWidth()/2 - Pong.BORDER_CORRECTION + 41, 37);
-
-        // Draw ball
-        g.setColor(Color.BLACK);
-        game.getBall().paint(g);
-        
+       
         // Draw players
         game.getPlayer(1).paint(g);
         game.getPlayer(2).paint(g);
+        
+        // Draw state
+        if(!game.getGameState()){
+        	g.setFont(scoreFont);
+        	g.setColor(new Color(0,145,206));
+        	int won;
+        	if(game.getScore(1) > game.getScore(2)){
+        		won = 1;
+        	}else{
+        		won = 2;
+        	}
+        	g.drawString("Player "+won+" WON!",game.getWidth()/2 - Pong.BORDER_CORRECTION - 80, game.getHeight()/2);
+        }else{
+            // Draw ball
+            g.setColor(Color.BLACK);
+            game.getBall().paint(g);
+        }
     }
 }

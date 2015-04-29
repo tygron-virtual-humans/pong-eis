@@ -19,6 +19,7 @@ public class Pong extends JFrame implements ActionListener {
 	public final static int BORDER_CORRECTION = 36;
 	private boolean playingState = false;
     private PongPanel panel;
+    private Timer timer;
     
 	
     private Ball ball;
@@ -41,7 +42,7 @@ public class Pong extends JFrame implements ActionListener {
         
         // Set playing state + start timer/game
         playingState = true;
-        Timer timer = new Timer(5, this);
+        timer = new Timer(5, this);
         timer.start();
     }
 
@@ -72,6 +73,14 @@ public class Pong extends JFrame implements ActionListener {
         }else{
             return score2;
         }
+    }
+    
+    public void setGameState(boolean newState){
+    	playingState = newState;
+    	
+    	if(newState == false){
+    		timer.stop();
+    	}
     }
     
     public boolean getGameState(){
