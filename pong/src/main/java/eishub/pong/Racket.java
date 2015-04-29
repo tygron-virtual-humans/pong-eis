@@ -1,3 +1,4 @@
+package eishub.pong;
 /**
  * Pong in JAVA
  * Base source: http://codereview.stackexchange.com/questions/27197/pong-game-in-java
