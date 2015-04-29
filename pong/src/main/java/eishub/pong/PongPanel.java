@@ -27,6 +27,10 @@ public class PongPanel extends JPanel{
     private final Font vsFont = new Font("Tahoma", Font.PLAIN, 20);
 	private Pong game;
 	
+	/**
+	 * Pong Panel constructor.
+	 * @param game
+	 */
     public PongPanel(Pong game) {
         setBackground(Color.WHITE);
         this.game = game;            
@@ -36,7 +40,7 @@ public class PongPanel extends JPanel{
 
     
     /**
-     * Initialize 2 Player Bindings
+     * Initializer for all key bindings
      */
 	private void initializeKeyBindings() { 
 		
@@ -119,13 +123,43 @@ public class PongPanel extends JPanel{
 	    
 	}
 
+	/**
+	 * General Paint function - called by JAVA
+	 */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         
+        // Paint all layered elements
+        paintBackground(g);
+        paintUI(g);
+        paintGameElements(g);
+               
+    }
+    
+    /**
+     * Paint the background
+     * @param g Graphics Object
+     */
+    public void paintBackground(Graphics g) {
+    	g.setColor(Color.BLACK);
+    	g.fillRect(0, 0, game.getWidth(), 3); // Top
+    	g.fillRect(0, game.getHeight() - Pong.BORDER_CORRECTION, game.getWidth(), 3); // Bottom
+    	g.fillRect(0, 0, 3, game.getHeight()); // Left
+    	g.fillRect(game.getWidth() - 9, 0, 3, game.getHeight()); // Right
+    	
+    }
+    
+    /**
+     * Paint the UI
+     * @param g Graphics Object
+     */
+    public void paintUI(Graphics g) {
         // Draw scorebox
         g.setColor(new Color(236,236,236));
-        g.fillRect(game.getWidth()/2 - Pong.BORDER_CORRECTION, 0, 100, 50);
+        g.fillRect(game.getWidth()/2 - Pong.BORDER_CORRECTION, 3, 100, 43);
+        g.setColor(Color.BLACK);
+        g.drawRect(game.getWidth()/2 - Pong.BORDER_CORRECTION, 2, 100, 44);
         
         // Enable anti aliasing
         ((Graphics2D) g).setRenderingHint(
@@ -141,8 +175,14 @@ public class PongPanel extends JPanel{
         // Draw VS   
         g.setFont(vsFont);
         g.setColor(new Color(206,24,0));
-        g.drawString("vs", game.getWidth()/2 - Pong.BORDER_CORRECTION + 41, 37);
-       
+        g.drawString("vs", game.getWidth()/2 - Pong.BORDER_CORRECTION + 41, 37);  	
+    }  
+    
+    /**
+     * Draw game elements.
+     * @param g Graphics Object
+     */
+    public void paintGameElements(Graphics g) {
         // Draw players
         game.getPlayer(1).paint(g);
         game.getPlayer(2).paint(g);
@@ -164,6 +204,6 @@ public class PongPanel extends JPanel{
             // Draw ball
             g.setColor(Color.BLACK);
             game.getBall().paint(g);
-        }
-    }
+        }	
+    }  
 }

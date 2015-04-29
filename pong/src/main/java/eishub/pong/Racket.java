@@ -18,7 +18,7 @@ public class Racket {
     public Racket(Pong game, int x) {
         this.game = game;
         this.x = x;
-        y = game.getHeight() / 2;
+        y = game.getHeight() / 2 - HEIGHT/2;
     }
 
     /**

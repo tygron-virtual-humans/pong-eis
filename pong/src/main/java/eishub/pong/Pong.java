@@ -16,7 +16,7 @@ import javax.swing.Timer;
 public class Pong extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 3504739896597314995L;
 	private final static int GAME_WIDTH = 800, GAME_HEIGHT = 600;
-	public final static int BORDER_CORRECTION = 36;
+	public final static int BORDER_CORRECTION = 31;
 	private boolean playingState = false;
     private PongPanel panel;
     private Timer timer;
