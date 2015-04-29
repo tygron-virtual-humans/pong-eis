@@ -6,11 +6,13 @@ package eishub.pong;
  * Modified for example eis project.
  */
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.Stroke;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -24,7 +26,9 @@ import javax.swing.KeyStroke;
 public class PongPanel extends JPanel{
 	private static final long serialVersionUID = 6647966072683911536L;
     private final Font scoreFont = new Font("Tahoma", Font.PLAIN, 35);
-    private final Font vsFont = new Font("Tahoma", Font.PLAIN, 20);
+    private final Font vsFont = new Font("Tahoma", Font.PLAIN, 20);   
+    private final float dash1[] = {10.0f};
+    private final BasicStroke dashed =  new BasicStroke(5.0f,BasicStroke.CAP_BUTT,BasicStroke.JOIN_MITER,10.0f, dash1, 0.0f);
 	private Pong game;
 	
 	/**
@@ -148,6 +152,12 @@ public class PongPanel extends JPanel{
     	g.fillRect(0, 0, 3, game.getHeight()); // Left
     	g.fillRect(game.getWidth() - 9, 0, 3, game.getHeight()); // Right
     	
+    	if(game.getGameState()){
+	    	Stroke original = ((Graphics2D) g).getStroke();
+	    	((Graphics2D) g).setStroke(dashed);
+	    	g.drawLine(game.getWidth()/2 - 4, 0, game.getWidth()/2 - 4, game.getHeight());  
+	    	((Graphics2D) g).setStroke(original); 
+    	}
     }
     
     /**
@@ -157,9 +167,9 @@ public class PongPanel extends JPanel{
     public void paintUI(Graphics g) {
         // Draw scorebox
         g.setColor(new Color(236,236,236));
-        g.fillRect(game.getWidth()/2 - Pong.BORDER_CORRECTION, 3, 100, 43);
+        g.fillRect(game.getWidth()/2 - Pong.BORDER_CORRECTION - 23, 3, 100, 47);
         g.setColor(Color.BLACK);
-        g.drawRect(game.getWidth()/2 - Pong.BORDER_CORRECTION, 2, 100, 44);
+        g.drawRect(game.getWidth()/2 - Pong.BORDER_CORRECTION - 23, 2, 100, 48);
         
         // Enable anti aliasing
         ((Graphics2D) g).setRenderingHint(
@@ -169,13 +179,13 @@ public class PongPanel extends JPanel{
         // Draw score
         g.setFont(scoreFont);
         g.setColor(new Color(0,145,206));
-        g.drawString(game.getScore(1)+ "", game.getWidth()/2 - Pong.BORDER_CORRECTION + 10, 37);
-        g.drawString(game.getScore(2)+ "", game.getWidth()/2 - Pong.BORDER_CORRECTION + 71, 37);
+        g.drawString(game.getScore(1)+ "", game.getWidth()/2 - Pong.BORDER_CORRECTION - 13, 39);
+        g.drawString(game.getScore(2)+ "", game.getWidth()/2 - Pong.BORDER_CORRECTION + 48, 39);
         
         // Draw VS   
         g.setFont(vsFont);
         g.setColor(new Color(206,24,0));
-        g.drawString("vs", game.getWidth()/2 - Pong.BORDER_CORRECTION + 41, 37);  	
+        g.drawString("vs", game.getWidth()/2 - Pong.BORDER_CORRECTION + 18, 39);  	
     }  
     
     /**
