@@ -16,6 +16,8 @@ import javax.swing.Timer;
 public class Pong extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 3504739896597314995L;
 	private final static int GAME_WIDTH = 800, GAME_HEIGHT = 600;
+	public final static int BORDER_CORRECTION = 36;
+	private boolean playingState = false;
     private PongPanel panel;
     
 	
@@ -32,11 +34,13 @@ public class Pong extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         ball = new Ball(this);
-        player1 = new Racket(this, this.getWidth() - 36);
+        player1 = new Racket(this, this.getWidth() - BORDER_CORRECTION);
         player2 = new Racket(this, 20);
         panel = new PongPanel(this);
         add(panel);
         
+        // Set playing state + start timer/game
+        playingState = true;
         Timer timer = new Timer(5, this);
         timer.start();
     }
@@ -68,6 +72,10 @@ public class Pong extends JFrame implements ActionListener {
         }else{
             return score2;
         }
+    }
+    
+    public boolean getGameState(){
+    	return playingState;
     }
     
     public PongPanel getPanel() {

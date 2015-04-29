@@ -22,15 +22,16 @@ public class Racket {
     }
 
     /**
-     * Update Tickc
+     * Update Tick
      */
     public void update() {
-        if (y > 0 && y < game.getHeight() - HEIGHT - 29)
+        if (y > 0 && y < game.getHeight() - HEIGHT - 29){
             y += ya;
-        else if (y <= 0)
+        }else if (y <= 0){
             y++;
-        else if (y >= game.getHeight() - HEIGHT - 29)
+        }else if (y >= game.getHeight() - HEIGHT - 29){
             y--;
+        }
     }
     
     /**
@@ -56,20 +57,28 @@ public class Racket {
     public void moveStop(){
     	ya = 0;
     }    
-
-    public Rectangle getBounds() {
-        return new Rectangle(x, y, WIDTH, HEIGHT);
-    }
-
-    public void paint(Graphics g) {
-        g.fillRect(x, y, WIDTH, HEIGHT);
-    }
-    
+   
     /**
      * This returns the vertical position of the player
      * @return
      */
     public int getPosition(){
     	return y;
+    }
+    
+    /**
+     * Get Racket bounds
+     * @return
+     */
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, WIDTH, HEIGHT);
+    }
+
+    /**
+     * Paint Racket
+     * @param g
+     */
+    public void paint(Graphics g) {
+        g.fillRect(x, y, WIDTH, HEIGHT);
     }
 }

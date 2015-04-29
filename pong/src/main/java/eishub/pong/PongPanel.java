@@ -7,7 +7,10 @@ package eishub.pong;
  */
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
@@ -20,7 +23,8 @@ import javax.swing.KeyStroke;
 
 public class PongPanel extends JPanel{
 	private static final long serialVersionUID = 6647966072683911536L;
-       
+    private final Font scoreFont = new Font("Tahoma", Font.PLAIN, 35);
+    private final Font vsFont = new Font("Tahoma", Font.PLAIN, 20);
 	private Pong game;
 	
     public PongPanel(Pong game) {
@@ -106,8 +110,32 @@ public class PongPanel extends JPanel{
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.drawString(game.getScore(1) + " : " + game.getScore(2), game.getWidth() / 2, 10);
+        
+        // Draw scorebox
+        g.setColor(new Color(236,236,236));
+        g.fillRect(game.getWidth()/2 - Pong.BORDER_CORRECTION, 0, 100, 50);
+        
+        // Enable anti aliasing
+        ((Graphics2D) g).setRenderingHint(
+                RenderingHints.KEY_TEXT_ANTIALIASING,
+                RenderingHints.VALUE_TEXT_ANTIALIAS_GASP);
+        
+        // Draw score
+        g.setFont(scoreFont);
+        g.setColor(new Color(0,145,206));
+        g.drawString(game.getScore(1)+ "", game.getWidth()/2 - Pong.BORDER_CORRECTION + 10, 37);
+        g.drawString(game.getScore(2)+ "", game.getWidth()/2 - Pong.BORDER_CORRECTION + 71, 37);
+        
+        // Draw VS   
+        g.setFont(vsFont);
+        g.setColor(new Color(206,24,0));
+        g.drawString("vs", game.getWidth()/2 - Pong.BORDER_CORRECTION + 41, 37);
+
+        // Draw ball
+        g.setColor(Color.BLACK);
         game.getBall().paint(g);
+        
+        // Draw players
         game.getPlayer(1).paint(g);
         game.getPlayer(2).paint(g);
     }
