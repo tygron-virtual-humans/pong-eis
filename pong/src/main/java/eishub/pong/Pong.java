@@ -61,6 +61,11 @@ public class Pong extends JFrame implements ActionListener {
         timer.start();
     }
     
+    /**
+     * Returns a player instance.
+     * @param playerNo The player number.
+     * @return
+     */
     public Racket getPlayer(int playerNo) {
         if (playerNo == 1){
             return player1;
@@ -69,10 +74,18 @@ public class Pong extends JFrame implements ActionListener {
         }
     }
     
+    /**
+     * Returns the ball instance.
+     * @return
+     */
     public Ball getBall(){
     	return ball;
     }
 
+    /**
+     * Increase the score for a given player number.
+     * @param playerNo The player number.
+     */
     public void increaseScore(int playerNo) {
         if (playerNo == 1){
             score1++;
@@ -81,6 +94,11 @@ public class Pong extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * Returns the score for a given player number.
+     * @param playerNo The player number.
+     * @return
+     */
     public int getScore(int playerNo) {
         if (playerNo == 1){
             return score1;
@@ -89,6 +107,10 @@ public class Pong extends JFrame implements ActionListener {
         }
     }
     
+    /**
+     * Set the current game state.
+     * @param newState
+     */
     public void setGameState(boolean newState){
     	playingState = newState;
     	
@@ -97,26 +119,36 @@ public class Pong extends JFrame implements ActionListener {
     	}
     }
     
+    /**
+     * Return the current game state
+     * @return
+     */
     public boolean getGameState(){
     	return playingState;
     }
-    
-    public PongPanel getPanel() {
-        return panel;
-    }
 
-    public static void main(String[] args) {
-        new Pong();
-    }
-
+    /**
+     * Gets called to update game mechanisms by timer
+     */
     private void update() {
         getBall().update();
         getPlayer(1).update();
         getPlayer(2).update();
     }
 
+    /**
+     * Callback for java on an action (timer)
+     */
 	public void actionPerformed(ActionEvent arg0) {
 		update();
 		panel.repaint();
 	}
+	
+	/**
+	 * Main Program Launcher
+	 * @param args
+	 */
+    public static void main(String[] args) {
+        new Pong();
+    }
 }
