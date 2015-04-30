@@ -1,84 +1,88 @@
 package eishub.pong;
+
 /**
  * Pong in JAVA
  * Base source: http://codereview.stackexchange.com/questions/27197/pong-game-in-java
  * Modified for example eis project.
  */
 
-
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
 public class Racket {
-    private static final int WIDTH = 10, HEIGHT = 60;
-    private Pong game;
-    private int x;
-    private int y, ya;
+  private static final int WIDTH = 10;
+  private static final int HEIGHT = 60;
+  private Pong game;
+  private int xlocation;
+  private int ylocation;
+  private int ya;
 
-    public Racket(Pong game, int x) {
-        this.game = game;
-        this.x = x;
-        y = game.getHeight() / 2 - HEIGHT/2;
-    }
+  /**
+   * Racket constructor.
+   * @param game the game instance
+   * @param xlocation the required x coordinate
+   */
+  public Racket(Pong game, int xlocation) {
+    this.game = game;
+    this.xlocation = xlocation;
+    ylocation = game.getHeight() / 2 - HEIGHT / 2;
+  }
 
-    /**
-     * Update Tick
-     */
-    public void update() {
-        if (y > 0 && y < game.getHeight() - HEIGHT - 29){
-            y += ya;
-        }else if (y <= 0){
-            y++;
-        }else if (y >= game.getHeight() - HEIGHT - 29){
-            y--;
-        }
+  /**
+   * Update Tick.
+   */
+  public void update() {
+    if (ylocation > 0 && ylocation < game.getHeight() - HEIGHT - 29) {
+      ylocation += ya;
+    } else if (ylocation <= 0) {
+      ylocation++;
+    } else if (ylocation >= game.getHeight() - HEIGHT - 29) {
+      ylocation--;
     }
-    
-    /**
-     * Move player 1 unit up.
-     * @param keyCode
-     */
-    public void moveUp(){
-    	ya = -2;
-    }
-    
-    /**
-     * Move player 1 unit down.
-     * @param keyCode
-     */
-    public void moveDown(){
-    	ya = 2;
-    }
-    
-    /**
-     * Stop player movement
-     * @param keyCode
-     */
-    public void moveStop(){
-    	ya = 0;
-    }    
-   
-    /**
-     * This returns the vertical position of the player
-     * @return
-     */
-    public int getPosition(){
-    	return y;
-    }
-    
-    /**
-     * Get Racket bounds
-     * @return
-     */
-    public Rectangle getBounds() {
-        return new Rectangle(x, y, WIDTH, HEIGHT);
-    }
+  }
 
-    /**
-     * Paint Racket
-     * @param g
-     */
-    public void paint(Graphics g) {
-        g.fillRect(x, y, WIDTH, HEIGHT);
-    }
+  /**
+   * Move player 1 unit up.
+   */
+  public void moveUp() {
+    ya = -2;
+  }
+
+  /**
+   * Move player 1 unit down.
+   */
+  public void moveDown() {
+    ya = 2;
+  }
+
+  /**
+   * Stop player movement.
+   */
+  public void moveStop() {
+    ya = 0;
+  }
+
+  /**
+   * This returns the vertical position of the player.
+   * @return the y location of the player.
+   */
+  public int getPosition() {
+    return ylocation;
+  }
+
+  /**
+   * Get Racket bounds.
+   * @return the bounds of the racket
+   */
+  public Rectangle getBounds() {
+    return new Rectangle(xlocation, ylocation, WIDTH, HEIGHT);
+  }
+
+  /**
+   * Paint Racket.
+   * @param graphics the Graphics class
+   */
+  public void paint(Graphics graphics) {
+    graphics.fillRect(xlocation, ylocation, WIDTH, HEIGHT);
+  }
 }
