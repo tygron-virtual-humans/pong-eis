@@ -1,0 +1,28 @@
+init module {
+	beliefs {
+		ball(0,0).
+		paddle(0).
+	}
+	
+	actionspec {
+		move(Direction) {
+			pre { true }
+			post { true }
+		}	
+	}
+}
+
+main module {
+	program{
+		if bel(ball(X,Y), paddle(Z), (Y > Z)) then move(-1).
+		if bel(ball(X,Y), paddle(Z), (Y < Z)) then move(1).
+		%if true then move(1).
+	}	
+}
+
+event module {
+	program{
+		if bel(percept(ball(X,Y)), ball(OX,OY)) then delete(ball(OX,OY))+insert(ball(X,Y)).
+		if bel(percept(paddle(Y)), paddle(OY)) then delete(paddle(OY))+insert(paddle(Y)).
+	}
+}
